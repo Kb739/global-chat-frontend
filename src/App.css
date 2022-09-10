@@ -8,6 +8,7 @@ ul {
 }
 
 .App {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -63,4 +64,34 @@ textarea {
     resize: none;
     flex-grow: 1;
     font-size: 1rem;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    background-color: antiquewhite;
+}
+
+.login-form {
+    aspect-ratio: 1/1;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: red;
+}
+
+input {
+    border-radius: 3px;
+    border: none;
+    height: 2em;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.75);
 }

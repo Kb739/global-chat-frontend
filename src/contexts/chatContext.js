@@ -1,11 +1,12 @@
 import React, { useState, createContext, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 const chatContext = createContext();
 const API = 'http://localhost:3000/api/v1'
 
 function ChatProvider(props) {
     const [chat, setChat] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate()
 
     async function createMsg(msg) {
         const requestOptions = {
@@ -20,11 +21,25 @@ function ChatProvider(props) {
     }
 
     async function fetchChat() {
-        const response = await fetch(`${API}/msgs`)
-        const result = await response.json()
-        console.log(result)
-        setChat(result)
-        setLoading(false)
+        const token = '';
+        const requestOptions = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+        try {
+            const response = await fetch(`${API}/msgs`, requestOptions)
+            if (response.status === 401) {
+                return navigate("./login", { replace: true })
+            }
+            else {
+                const result = await response.json()
+                setChat(result)
+            }
+        }
+        catch (e) {
+            //navigate to error page
+            console.log(e)
+        }
+
     }
 
     useEffect(() => {
@@ -32,10 +47,12 @@ function ChatProvider(props) {
             fetchChat()
         }
     }, [loading])
+
     return (
         <chatContext.Provider value={{ chat, createMsg }}>
             {props.children}
         </chatContext.Provider>
+
     )
 }
 export { ChatProvider, chatContext }

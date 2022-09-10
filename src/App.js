@@ -1,18 +1,17 @@
 import "./App.css"
-import Chat from "./chat";
-import Input from "./input";
+import Home from "./home";
+import Login from "./login";
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <header></header>
-      <main>
-        <Chat />
-      </main>
-      <footer>
-        <Input />
-      </footer>
+      <Routes>
+        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/login" element={<Login />}></Route>
+      </Routes>
     </div>
+
   );
 }
 
