@@ -3,7 +3,7 @@ import Chat from "./chat";
 import Input from "./input";
 export default function Home() {
     return (
-        <>
+        <div className="home">
             <header></header>
             <main>
                 <Chat />
@@ -11,6 +11,6 @@ export default function Home() {
             <footer>
                 <Input />
             </footer>
-        </>
+        </div>
     )
 }

@@ -2,12 +2,19 @@
     box-sizing: border-box;
 }
 
-ul {
+html {
+    --blue-a: rgb(100, 180, 250);
+    --blue-b: rgb(50, 140, 250);
+}
+
+ul,
+h4,
+h3 {
     padding: 0;
     margin: 0;
 }
 
-.App {
+.home {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -44,7 +51,7 @@ main {
 }
 
 .text-box.local {
-    background-color: rgb(112, 185, 245);
+    background-color: var(--blue-a);
     margin-left: auto;
     margin-right: 0;
 
@@ -69,9 +76,21 @@ textarea {
 .login {
     display: flex;
     flex-direction: column;
+    height: 100vh;
     justify-content: center;
-    flex-grow: 1;
     background-color: antiquewhite;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1
+    }
 }
 
 .login-form {
@@ -82,16 +101,49 @@ textarea {
     justify-content: center;
     align-items: center;
     margin: auto;
-    background-color: red;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 3px 10px gray;
+    animation: fadein 0.5s ease-in-out;
 }
 
 input {
-    border-radius: 3px;
-    border: none;
-    height: 2em;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: large;
+    padding: 10px;
+    margin-top: 5px;
+    color: gray;
 }
 
 input:focus {
     outline: none;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.75);
+    border: none;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.75);
+}
+
+.input-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    letter-spacing: 0.25em;
+    color: rgb(80, 80, 80);
+    flex-grow: 0.5;
+}
+
+.enter {
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    min-height: 2em;
+    color: white;
+    background-color: var(--blue-a);
+    border-radius: 5px;
+    box-shadow: 0 0 4px gray;
+    transition: background-color 0.2s;
+}
+
+.enter:hover {
+    background-color: var(--blue-b);
+
 }

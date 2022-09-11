@@ -5,7 +5,7 @@ const API = 'http://localhost:3000/api/v1'
 
 function ChatProvider(props) {
     const [chat, setChat] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [load, setLoad] = useState(true);
     const navigate = useNavigate()
 
     async function createMsg(msg) {
@@ -16,37 +16,28 @@ function ChatProvider(props) {
         }
         const response = await fetch(`${API}/msgs`, requestOptions)
         const newMsgID = await response.json()
-        //store this id for local message identification
-        setLoading(true)
+        //store this id for local message identification; session storage
+        setLoad(true)
     }
 
     async function fetchChat() {
-        const token = '';
-        const requestOptions = {
-            headers: { Authorization: `Bearer ${token}` }
-        }
         try {
-            const response = await fetch(`${API}/msgs`, requestOptions)
-            if (response.status === 401) {
-                return navigate("./login", { replace: true })
-            }
-            else {
-                const result = await response.json()
-                setChat(result)
-            }
+            const response = await fetch(`${API}/msgs`)
+            const result = await response.json()
+            setChat(result)
+            setLoad(false)
         }
         catch (e) {
-            //navigate to error page
-            console.log(e)
+            // console.log(e)
         }
 
     }
 
     useEffect(() => {
-        if (loading) {
+        if (load) {
             fetchChat()
         }
-    }, [loading])
+    }, [load])
 
     return (
         <chatContext.Provider value={{ chat, createMsg }}>

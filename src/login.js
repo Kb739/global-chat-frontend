@@ -10,9 +10,10 @@ export default function Login() {
         <div className="login">
             <form className="login-form">
                 <label className="input-label">
-                    <h3>alias:</h3>
-                    <input name="name" value={user.name} />
+                    <h3>Alias</h3>
+                    <input name="name" value={user.name} autoFocus={true} required={true} />
                 </label>
+                <button className="enter" type="submit">Let me in</button>
             </form>
         </div>
     )
