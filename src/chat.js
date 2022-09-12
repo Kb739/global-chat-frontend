@@ -4,14 +4,15 @@ import { chatContext } from "./contexts/chatContext";
 export default function Chat() {
     const { chat } = useContext(chatContext)
 
-    const msgElements = chat.map(msg => {
-        const classes = `text-box ${msg.id % 2 ? 'local' : ''}`
-        return <li key={msg.id} className={classes}>{msg.content}</ li >
+    const postElements = chat.map(post => {
+        const localMsgs = JSON.parse(sessionStorage.getItem('msgs')) || []
+        const classes = `text-box ${localMsgs.includes(post.id) ? 'local' : ''}`
+        return <li key={post.id} className={classes}>{post.msg.content}</ li >
     })
 
     return (
         <ul className="chat-list">
-            {msgElements}
+            {postElements}
         </ul>
     )
 }

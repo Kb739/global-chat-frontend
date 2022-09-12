@@ -16,6 +16,7 @@ export default function Input() {
         setMsg({ content: '' })
         createMsg(msg)
         resetSize()
+        ref.current.focus();
     }
 
     function resetSize() {
@@ -42,8 +43,8 @@ export default function Input() {
             <textarea onChange={handleChange} value={msg.content} onKeyDown={e => {
                 if (e.key === "Enter")
                     handleSubmit(e)
-            }} ref={ref} onInput={handleSize} />
-            <button type="submit">submit</button>
+            }} ref={ref} onInput={handleSize} autoFocus={true} />
+            <button type="submit" className="send">Send</button>
         </form>
     )
 }
