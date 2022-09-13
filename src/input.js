@@ -13,10 +13,12 @@ export default function Input() {
     }
     function handleSubmit(e) {
         e.preventDefault();
-        setMsg({ content: '' })
-        createMsg(msg)
-        resetSize()
         ref.current.focus();
+        if (msg.content) {
+            setMsg({ content: '' })
+            createMsg(msg)
+            resetSize()
+        }
     }
 
     function resetSize() {
@@ -40,10 +42,12 @@ export default function Input() {
 
     return (
         <form className='input-section' onSubmit={handleSubmit}>
-            <textarea onChange={handleChange} value={msg.content} onKeyDown={e => {
-                if (e.key === "Enter")
-                    handleSubmit(e)
-            }} ref={ref} onInput={handleSize} autoFocus={true} />
+            <div className="box-wrapper">
+                <textarea onChange={handleChange} value={msg.content} onKeyDown={e => {
+                    if (e.key === "Enter")
+                        handleSubmit(e)
+                }} ref={ref} onInput={handleSize} autoFocus={true} />
+            </div>
             <button type="submit" className="send">Send</button>
         </form>
     )

@@ -13,7 +13,6 @@ function ChatProvider(props) {
     const [chat, setChat] = useState([]);
     const navigate = useNavigate()
 
-
     async function createMsg(msg) {
         const user = getSessionUser()
         if (user) {
@@ -24,9 +23,11 @@ function ChatProvider(props) {
             }
             try {
                 const response = await fetch(`${API}/msgs`, requestOptions)
-                const postID = await response.json()
-                const localMsgs = JSON.parse(sessionStorage.getItem('msgs')) || []
-                sessionStorage.setItem('msgs', JSON.stringify([...localMsgs, postID]))
+                if (response.status === 200) {
+                    const postID = await response.json()
+                    const localMsgs = JSON.parse(sessionStorage.getItem('msgs')) || []
+                    sessionStorage.setItem('msgs', JSON.stringify([...localMsgs, postID]))
+                }
             } catch (e) {
                 //console.log(e)
             }
