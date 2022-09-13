@@ -9,7 +9,7 @@ export default function Chat() {
         const localMsgs = JSON.parse(sessionStorage.getItem('msgs')) || []
         const isLocal = localMsgs.includes(post.id);
         return <li key={post.id} className={`post ${isLocal ? 'local' : ''}`}>
-            <Post msg={post.msg} user={post.user} isLocal={isLocal} /></ li >
+            <Post post={post} isLocal={isLocal} /></ li >
     })
 
     return (

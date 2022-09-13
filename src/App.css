@@ -66,31 +66,40 @@ main {
     flex-direction: column;
     max-width: 90%;
     min-height: fit-content;
-    margin-right: auto;
-    /* border: 1px solid black; */
+    margin: 0 auto 0 0;
+    border-radius: 5px;
+    background-color: white;
+    padding: 2px 10px;
+
 }
 
 .post.local {
-    margin-right: 0;
-    margin-left: auto;
-}
-
-.text-box {
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 0.85rem;
-    word-wrap: break-word;
-}
-
-.text-box.local {
+    margin: 0 0 0 auto;
     background-color: var(--blue-b);
     color: white;
 }
 
+.text-box {
+    display: flex;
+    align-items: flex-end;
+    font-size: 0.85rem;
+    column-gap: 10px;
+}
+
 .sender {
     color: rgb(100, 100, 100);
-    padding: 2px;
+    margin-top: 3px;
+}
+
+.text-box>p {
+    padding: 5px 0;
+    word-wrap: break-word;
+}
+
+.post-time {
+    font-weight: 100;
+    font-size: 0.8em;
+    flex-shrink: 0;
 }
 
 .send {
